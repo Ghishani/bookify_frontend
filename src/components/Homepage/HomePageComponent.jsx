@@ -13,9 +13,10 @@ const HomePageComponent = () => {
                 <NavigationBar />
                 <hr />
                 <Outlet />
+                <hr />
+                <ContentComponent />
                 <FooterComponent />
             </section>
-            <hr />
         </>
     )
 }

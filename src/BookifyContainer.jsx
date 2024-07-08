@@ -30,7 +30,6 @@ const BookifyContainer = ()=> {
                 path: "/",
                 element: <HomePageComponent />,
                 children: [
-                
                     {
                         path: "/books",
                         element: <BookOnlineComponent />,
@@ -43,15 +42,6 @@ const BookifyContainer = ()=> {
                         path: "/recommendations",
                         element: <RecommendationsComponent />,
                     },
-                        
-                    {
-                        path:"/",
-                        element: <ContentComponent />
-                    },
-                    {
-                        path:"/",
-                        element: <FooterComponent />
-                    }
                 ]
             }
         ]
