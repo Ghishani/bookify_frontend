@@ -1,7 +1,6 @@
-import { useState, useEffect, Component } from "react";
+import { useState, useEffect} from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePageComponent from "./components/Homepage/HomePageComponent";
-import NavigationBar from "./components/Homepage/NavigationBar";
 import ContentComponent from "./components/Homepage/ContentComponent";
 import FooterComponent from "./components/Homepage/Footer/FooterComponent";
 import BookOnlineComponent from "./components/BookOnlineComponent";
