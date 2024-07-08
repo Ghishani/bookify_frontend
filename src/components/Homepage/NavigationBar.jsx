@@ -2,6 +2,7 @@ const NavigationBar = () => {
 
     return(
         <>
+            <h1>Hello form Navigation!</h1>
         </>
     )
 }
