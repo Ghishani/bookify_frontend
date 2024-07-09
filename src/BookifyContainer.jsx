@@ -36,6 +36,15 @@ const BookifyContainer = ()=> {
         setUsers([...users, savedUser]);
     }
 
+    const deleteUser = async (id) => {
+        
+        await fetch (`http://localhost:8080/users/${id}`, {
+            method: "DELETE",
+        } );
+
+        setUsers(users.filter(user => user.id!== id));
+    }
+
     const userLoader = ({params}) => {
         const userToView = users.find((user) => {
             return user.id === parseInt(params.id);
@@ -76,7 +85,7 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/:id/bookshelves",
                         loader: userLoader,
-                        element: <BookShelvesComponent />
+                        element: <BookShelvesComponent deleteUser = {deleteUser}/>
                     },
                     {
                         path: "/footer/about-us",
