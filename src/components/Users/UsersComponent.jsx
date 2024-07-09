@@ -7,13 +7,16 @@ const UsersComponent = ({users, setUsers, originalUserList}) => {
     const userList = users.map((user) => {
         return( 
             <section key={user.id} className="content-grid">
-                <p className="card">{user.username} </p>
+                <Link to={`/users/${user.id}/bookshelves`}>
+                    <p className="card">{user.username} </p>
+                </Link>
+               
             </section>
         )
     })
 
     return(
-        <div className="users-container">
+        <div>
              <div className="search-box">
                 <SearchUsersComponent users={users} setUsers={setUsers} originalUserList={originalUserList}/>
                 <hr />
