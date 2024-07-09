@@ -10,12 +10,11 @@ import TermsComponent from "./components/Homepage/Footer/TermsComponent";
 import PrivacyComponent from "./components/Homepage/Footer/PrivacyComponent";
 import ContactUsComponent from "./components/Homepage/Footer/ContactUsComponent";
 import FAQComponent from "./components/Homepage/Footer/FAQComponent";
+import BookShelvesComponent from "./components/Users/BookShelves/BookShelvesComponent";
 
 const BookifyContainer = ()=> {
 
     const [users, setUsers] = useState([]);
-    const [booksOnline, setBooksOnline] = useState([]);
-    const [quote, setQuote] = useState("");
 
     const fetchUsers = async () => {
 
@@ -23,6 +22,8 @@ const BookifyContainer = ()=> {
         const data = await response.json();
         setUsers(data);
     }
+
+
 
     const postUser = async (newUser) => {
         
@@ -33,6 +34,13 @@ const BookifyContainer = ()=> {
         });
         const savedUser = await response.json();
         setUsers([...users, savedUser]);
+    }
+
+    const userLoader = ({params}) => {
+        const userToView = users.find((user) => {
+            return user.id === parseInt(params.id);
+        });
+        return userToView;
     }
 
     useEffect(() => {
@@ -64,6 +72,11 @@ const BookifyContainer = ()=> {
                     {
                         path: "/recommendations",
                         element: <RecommendationsComponent />,
+                    },
+                    {
+                        path: "/users/:id/bookshelves",
+                        loader: userLoader,
+                        element: <BookShelvesComponent />
                     },
                     {
                         path: "/footer/about-us",
