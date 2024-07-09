@@ -34,7 +34,7 @@ const BookifyContainer = ()=> {
                     },
                     {
                         path: "/users",
-                        element: <UsersComponent users= {users} setUsers = {setUsers} />,
+                        element: <UsersComponent users= {users} setUsers = {setUsers} originalUserList={fetchUsers}/>,
                     },
                     {
                         path: "/recommendations",
