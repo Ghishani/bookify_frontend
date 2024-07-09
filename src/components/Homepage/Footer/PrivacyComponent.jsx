@@ -2,6 +2,7 @@ const PrivacyComponent = () => {
 
     return(
         <>
+             <h4>Hello from privacy</h4>
         </>
     )
 }

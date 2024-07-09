@@ -2,6 +2,7 @@ const TermsComponent = () => {
 
     return(
         <>
+             <h4>Hello from Terms</h4>
         </>
     )
 }

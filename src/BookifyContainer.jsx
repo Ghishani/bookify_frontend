@@ -5,6 +5,11 @@ import BookOnlineComponent from "./components/BookOnlineComponent";
 import UsersComponent from "./components/Users/UsersComponent";
 import RecommendationsComponent from "./components/Recommendations/RecommendationsComponent";
 import AddUserComponent from "./components/Users/AddUserComponent";
+import AboutUsComponent from "./components/Homepage/Footer/AboutUsComponent";
+import TermsComponent from "./components/Homepage/Footer/TermsComponent";
+import PrivacyComponent from "./components/Homepage/Footer/PrivacyComponent";
+import ContactUsComponent from "./components/Homepage/Footer/ContactUsComponent";
+import FAQComponent from "./components/Homepage/Footer/FAQComponent";
 
 const BookifyContainer = ()=> {
 
@@ -59,6 +64,26 @@ const BookifyContainer = ()=> {
                     {
                         path: "/recommendations",
                         element: <RecommendationsComponent />,
+                    },
+                    {
+                        path: "/footer/about-us",
+                        element: <AboutUsComponent />,
+                    },
+                    {
+                        path: "/footer/terms",
+                        element: <TermsComponent />,
+                    },
+                    {
+                        path: "/footer/privacy",
+                        element: <PrivacyComponent />,
+                    },
+                    {
+                        path: "/footer/contact-us",
+                        element: <ContactUsComponent />,
+                    },
+                    {
+                        path: "/footer/faq",
+                        element: <FAQComponent />,
                     },
                 ]
             }
