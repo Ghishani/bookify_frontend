@@ -1,8 +1,12 @@
+import { Outlet } from "react-router-dom";
+
 const ContentComponent = () => {
 
     return(
         <>
-            <h1>Hello form Contents!</h1>
+            <hr />
+            <Outlet />
+            <hr />
         </>
     )
 }

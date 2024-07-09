@@ -4,6 +4,7 @@ import HomePageComponent from "./components/Homepage/HomePageComponent";
 import BookOnlineComponent from "./components/BookOnlineComponent";
 import UsersComponent from "./components/Users/UsersComponent";
 import RecommendationsComponent from "./components/Recommendations/RecommendationsComponent";
+import AddUserComponent from "./components/Users/AddUserComponent";
 
 const BookifyContainer = ()=> {
 
@@ -48,8 +49,12 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users",
                         element: <UsersComponent users= {users} setUsers = {setUsers} 
-                                originalUserList={fetchUsers} 
-                                postUser = {postUser}/>,
+                                originalUserList={fetchUsers}
+                                />,
+                    },
+                    {
+                        path: "/users/new",
+                        element: <AddUserComponent postUser = {postUser}/>,
                     },
                     {
                         path: "/recommendations",

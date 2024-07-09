@@ -1,7 +1,8 @@
 import AddUserComponent from "./AddUserComponent";
 import SearchUsersComponent from "./SearchUsersComponent";
+import { Link } from "react-router-dom";
 
-const UsersComponent = ({users, setUsers, originalUserList, postUser}) => {
+const UsersComponent = ({users, setUsers, originalUserList}) => {
 
 
     const userList = users.map((user) => {
@@ -14,13 +15,10 @@ const UsersComponent = ({users, setUsers, originalUserList, postUser}) => {
 
     return(
         <div>
-            <hr />
             <SearchUsersComponent users={users} setUsers={setUsers} originalUserList={originalUserList}/>
             <hr />
              {userList}
-            <hr />
-            <AddUserComponent postUser = {postUser}/>
-
+            <Link to = "/users/new">Add new user</Link>
         </div>
     )
 }

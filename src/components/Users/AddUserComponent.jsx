@@ -19,26 +19,29 @@ const AddUserComponent = ({postUser}) => {
 
     const handleValueChange = (event) => {
         const propertyName = event.target.name;
-        const copiedUser = {...userPayload};
+        const copiedUser = { ...userPayload };
         copiedUser[propertyName] = event.target.value;
-        setUserPayload[copiedUser];
+        setUserPayload(copiedUser);
     }
 
     return(
-        <section>
-            <form onSubmit={handleFormSubmit}>
-                <label htmlFor="user-name">Username</label>
-                <input 
-                    type="text"
-                    id= "user-name"
-                    name="username"
-                    placeholder="Enter username"
-                    onChange= {handleValueChange()}
-                    value= {userPayload.username}
-                 />
-                 <input type="submit" value="add user" />
-            </form>
-        </section>
+        <>
+            <h3>Add User</h3>
+            <section>
+                <form onSubmit={handleFormSubmit}>
+                    <label htmlFor="user-name">Username</label>
+                    <input 
+                        id= "user-name"
+                        name="username"
+                        type="text"
+                        placeholder="Enter username"
+                        onChange= {handleValueChange}
+                        value= {userPayload.username}
+                    />
+                    <input type="submit" value="add user" />
+                </form>
+            </section>
+        </>
     )
 }
 
