@@ -1,9 +1,25 @@
-const UsersComponent = () => {
+// import { useLoaderData } from "react-router-dom";
+
+
+const UsersComponent = ({users, setUsers}) => {
+    // const navigate = useNavigate();
+    // const loadedUsers = useLoaderData();
+
+
+    const userList = users.map((users) => {
+        return( 
+            <>
+                users = {users}
+                key={users.id}
+            </>
+        )
+    })
 
     return(
-        <>
-        <h1>User List!</h1>
-        </>
+        <div>
+             <h1>{userList}</h1>
+            
+        </div>
     )
 }
 
