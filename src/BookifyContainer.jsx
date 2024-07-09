@@ -18,9 +18,22 @@ const BookifyContainer = ()=> {
         setUsers(data);
     }
 
+    const postUser = async (newUser) => {
+        
+        const response = await fetch ("http://localhost:8080/users", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newUser)
+        });
+        const savedUser = await response.json();
+        setUsers([...users, savedUser]);
+    }
+
     useEffect(() => {
         fetchUsers()
     }, []);
+
+
 
     const router = createBrowserRouter(
         [
@@ -34,7 +47,9 @@ const BookifyContainer = ()=> {
                     },
                     {
                         path: "/users",
-                        element: <UsersComponent users= {users} setUsers = {setUsers} originalUserList={fetchUsers}/>,
+                        element: <UsersComponent users= {users} setUsers = {setUsers} 
+                                originalUserList={fetchUsers} 
+                                postUser = {postUser}/>,
                     },
                     {
                         path: "/recommendations",

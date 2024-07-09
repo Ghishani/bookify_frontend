@@ -1,6 +1,7 @@
+import AddUserComponent from "./AddUserComponent";
 import SearchUsersComponent from "./SearchUsersComponent";
 
-const UsersComponent = ({users, setUsers, originalUserList}) => {
+const UsersComponent = ({users, setUsers, originalUserList, postUser}) => {
 
 
     const userList = users.map((user) => {
@@ -17,6 +18,9 @@ const UsersComponent = ({users, setUsers, originalUserList}) => {
             <SearchUsersComponent users={users} setUsers={setUsers} originalUserList={originalUserList}/>
             <hr />
              {userList}
+            <hr />
+            <AddUserComponent postUser = {postUser}/>
+
         </div>
     )
 }
