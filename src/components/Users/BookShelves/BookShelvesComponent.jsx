@@ -15,9 +15,11 @@ const BookShelvesComponent = () => {
     });
 
     return(
-        <div className="content-grid">
+        <section className="content-grid" key="user.id">
+            <h3>{`${user.username}'s bookshelves`}</h3>
             {bookShelfList}
-        </div>
+        </section>
+
     );
 
 }
