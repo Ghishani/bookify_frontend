@@ -2,6 +2,7 @@ const FAQComponent = () => {
 
     return(
         <>
+             <h4>Hello from FAQs</h4>
         </>
     )
 }
