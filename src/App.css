@@ -1,11 +1,38 @@
+.navigation-bar {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom: 1px white;
+  width: 100%;
+}
+
+.navigation-bar li {
+  margin-right: 20px;
+}
+
+.navigation-bar a {
+  text-decoration: none;
+  color: black;
+  padding: 10px 20px;
+  display: block;
+}
+
+.navigation-bar a:hover {
+  background-color: black;
+  color: white !important;
+}
+
+.active-link {
+  background-color: black;
+  color: white !important;
+}
+
 .content-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 20px;
-  display: inline;  
-  display:flex; 
-  flex-wrap: wrap; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .card {

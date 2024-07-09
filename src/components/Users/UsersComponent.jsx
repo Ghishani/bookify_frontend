@@ -1,4 +1,3 @@
-import AddUserComponent from "./AddUserComponent";
 import SearchUsersComponent from "./SearchUsersComponent";
 import { Link } from "react-router-dom";
 

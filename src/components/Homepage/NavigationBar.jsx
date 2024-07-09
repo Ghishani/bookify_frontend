@@ -1,14 +1,13 @@
-import{Link} from 'react-router-dom'
+import{NavLink} from 'react-router-dom'
 const NavigationBar = () => {
 
     return(
         <>
-            <h1>Hello form Navigation!</h1>
-            <nav>
-                <ul>
-                    <li><Link to="/books">Books</Link></li>
-                    <li><Link to="/users">Users</Link></li>
-                    <li><Link to="/recommendations">Recommendations</Link></li>
+            <nav >
+                <ul className='navigation-bar'>
+                    <li><NavLink to="/books" className={({isActive}) => (isActive ? "active-link": undefined)}>Books</NavLink></li>
+                    <li><NavLink to="/users" className={({isActive}) => (isActive ? "active-link": undefined)}>Users</NavLink></li>
+                    <li><NavLink to="/recommendations" className={({isActive}) => (isActive ? "active-link": undefined)}>Recommendations</NavLink></li>
                 </ul>
             </nav>
 
