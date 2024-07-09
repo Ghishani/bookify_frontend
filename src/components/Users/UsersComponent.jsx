@@ -6,19 +6,19 @@ const UsersComponent = ({users, setUsers}) => {
     // const loadedUsers = useLoaderData();
 
 
-    const userList = users.map((users) => {
+    const userList = users.map((user) => {
         return( 
-            <>
-                users = {users}
-                key={users.id}
-            </>
+            <section key={user.id} className="content-grid">
+                <p>{user.username}</p>
+            </section>
+                
+
         )
     })
 
     return(
         <div>
-             <h1>{userList}</h1>
-            
+             {userList}
         </div>
     )
 }
