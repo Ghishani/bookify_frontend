@@ -1,20 +1,23 @@
+
+import { Link } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 const BookShelvesComponent = ({deleteUser}) => {
-    
     const navigate = useNavigate();
     const user = useLoaderData();
-
+  
     const handleButtonClick = () => {
-        deleteUser(user.id);
-        navigate("/users");
-    }
+          deleteUser(user.id);
+          navigate("/users");
+      }
 
-    const bookShelfList = user.bookshelves.map((bookshelf)=>{
+    const bookShelfList = user.bookshelves.map((bookShelf)=>{
         return(
             <>
-                <section key={bookshelf.id} className="content-grid">
-                        <p className="card">{bookshelf.name} </p>
+                <section key={bookShelf.id} className="content-grid">
+                 <Link to={`/users/bookshelves/${bookShelf.id}/books`}>
+                        <p className="card">{bookShelf.name} </p>
+                 </Link>
                 </section>
             </>
         )
