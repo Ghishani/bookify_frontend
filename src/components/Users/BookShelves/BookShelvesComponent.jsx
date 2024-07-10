@@ -1,14 +1,20 @@
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const BookShelvesComponent = () => {
     
     const user = useLoaderData();
 
-    const bookShelfList = user.bookshelves.map((bookshelf)=>{
+    console.log("user : " , user); 
+
+    const bookShelfList = user.bookshelves.map((bookShelf)=>{
         return(
             <>
-                <section key={bookshelf.id} className="content-grid">
-                        <p className="card">{bookshelf.name} </p>
+                <section key={bookShelf.id} className="content-grid">
+                 <Link to={`/users/bookshelves/${bookShelf.id}/books`}>
+                        <p className="card">{bookShelf.name} </p>
+                 </Link>
                 </section>
             </>
         )

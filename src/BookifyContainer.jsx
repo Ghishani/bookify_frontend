@@ -11,11 +11,17 @@ import PrivacyComponent from "./components/Homepage/Footer/PrivacyComponent";
 import ContactUsComponent from "./components/Homepage/Footer/ContactUsComponent";
 import FAQComponent from "./components/Homepage/Footer/FAQComponent";
 import BookShelvesComponent from "./components/Users/BookShelves/BookShelvesComponent";
+import SearchBooksComponent from "./components/Users/BookShelves/SearchBooksComponent";
+import AddBookComponent from "./components/Users/BookShelves/AddBookComponent";
+import BookDatabaseComponent from "./components/Users/BookShelves/BookDatabaseComponent";
 
 const BookifyContainer = ()=> {
 
     const [users, setUsers] = useState([]);
+    const [books, setBooks] = useState ([]);
+    const [bookShelf, setBookShelf] = useState ([]);
 
+    
     const fetchUsers = async () => {
 
         const response = await fetch("http://localhost:8080/users");
@@ -24,10 +30,9 @@ const BookifyContainer = ()=> {
     }
 
 
-
     const postUser = async (newUser) => {
         
-        const response = await fetch ("http://localhost:8080/users", {
+        const response = await fetch("http://localhost:8080/users", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newUser)
@@ -43,10 +48,35 @@ const BookifyContainer = ()=> {
         return userToView;
     }
 
+    const bookShelfLoader = ({params}) => {
+        const bookShelfToView = users.map(user => user.bookshelves).flat().find((bookShelf) => {
+            return bookShelf.id === parseInt(params.id);
+        });
+        return bookShelfToView;
+    }
+
+
+    const fetchBooksFromBookShelf = async (id) => {
+        const response = await fetch(`http://localhost:8080/bookshelves/${id}`);
+        const data = await response.json();
+        setBooks(data);
+    }
+
+    const postBook = async (bookShelf, newBook) => {
+        const response = await fetch(`http://localhost:8080/bookshelves/${bookShelf.id}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newBook)
+        });
+        const savedBook = await response.json();
+        setBooks([...books, savedBook]);
+    };
+
+
     useEffect(() => {
         fetchUsers()
+        fetchBooksFromBookShelf()
     }, []);
-
 
 
     const router = createBrowserRouter(
@@ -57,7 +87,8 @@ const BookifyContainer = ()=> {
                 children: [
                     {
                         path: "/books",
-                        element: <BookOnlineComponent />,
+                        element: <BookOnlineComponent books={books} />,
+
                     },
                     {
                         path: "/users",
@@ -98,6 +129,20 @@ const BookifyContainer = ()=> {
                         path: "/footer/faq",
                         element: <FAQComponent />,
                     },
+                    {
+                        path: "/books/List",
+                        element: <SearchBooksComponent/>,
+                    },
+                    {
+                        path: "/books/new",
+                        element: <AddBookComponent postBook = {postBook}/>,
+                    },
+                    {
+                        path: "/users/bookshelves/:id/books",
+                        loader: bookShelfLoader,
+                        element: <BookDatabaseComponent  />
+                    },
+                    
                 ]
             }
         ]
