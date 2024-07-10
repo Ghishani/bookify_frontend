@@ -10,7 +10,7 @@ const SearchBooksComponent = ({books}, {}) => {
         if(inputText === "") originalBookList();
 
         const searchResult = user.books.filter(book => 
-            book.title.toLowerCase().includes(searchName.toLowerCase())
+            book.title.toLowerCase().includes(inputText.toLowerCase())
         )
         setUser(searchResult);
  };

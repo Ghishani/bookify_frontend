@@ -2,9 +2,10 @@
 import { Link } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
-const BookShelvesComponent = ({deleteUser}) => {
+const BookShelvesComponent = ({deleteUser, setCurrentUser}) => {
     const navigate = useNavigate();
     const user = useLoaderData();
+    setCurrentUser(user);
   
     const handleButtonClick = () => {
           deleteUser(user.id);
@@ -27,7 +28,7 @@ const BookShelvesComponent = ({deleteUser}) => {
         <section className="content-grid" key="user.id">
             <h3>{`${user.username}'s bookshelves`}</h3>
             {bookShelfList}
-            <button onClick= {handleButtonClick}>Delete User</button>
+            <button onClick= {handleButtonClick} style={{backgroundColor: "red"}}>Delete User</button>
         </section>
 
     );
