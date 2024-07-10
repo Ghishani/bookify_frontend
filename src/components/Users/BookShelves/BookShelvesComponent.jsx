@@ -2,9 +2,10 @@
 import { Link } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
-const BookShelvesComponent = ({deleteUser}) => {
+const BookShelvesComponent = ({deleteUser, setCurrentUser}) => {
     const navigate = useNavigate();
     const user = useLoaderData();
+    setCurrentUser(user);
   
     const handleButtonClick = () => {
           deleteUser(user.id);

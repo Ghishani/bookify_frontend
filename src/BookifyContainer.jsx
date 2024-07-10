@@ -14,12 +14,13 @@ import BookShelvesComponent from "./components/Users/BookShelves/BookShelvesComp
 import SearchBooksComponent from "./components/Users/BookShelves/SearchBooksComponent";
 import AddBookComponent from "./components/Users/BookShelves/AddBookComponent";
 import BookListDatabaseComponent from "./components/Users/BookShelves/BookListDatabaseComponent";
+import BookDatabaseComponent from "./components/Users/BookShelves/BookDatabaseComponent";
 
 const BookifyContainer = ()=> {
 
     const [users, setUsers] = useState([]);
     const [books, setBooks] = useState ([]);
-
+    const [currentUser, setCurrentUser] = useState ({});
     
     const fetchUsers = async () => {
 
@@ -62,6 +63,18 @@ const BookifyContainer = ()=> {
         });
         return bookShelfToView;
     }
+
+    const bookLoader = ({params}) => {
+        const bookToView = users.map(user => user.bookshelves)
+        .flat()
+        .map(bookShelf => bookShelf.books)
+        .flat()
+        .find((book) => {
+            return book.id === parseInt(params.id);
+        });
+        return bookToView;
+    }
+
 
 
     const fetchBooksFromBookShelf = async (id) => {
@@ -115,7 +128,7 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/:id/bookshelves",
                         loader: userLoader,
-                        element: <BookShelvesComponent deleteUser = {deleteUser}/>
+                        element: <BookShelvesComponent deleteUser = {deleteUser} setCurrentUser={setCurrentUser}/>
                     },
                     {
                         path: "/footer/about-us",
@@ -148,8 +161,13 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/bookshelves/:id/books",
                         loader: bookShelfLoader,
-                        element: <BookListDatabaseComponent  />
+                        element: <BookListDatabaseComponent  currentUser={currentUser}/>
                     },
+                    {
+                        path: "/users/bookshelves/books/:id",
+                        loader: bookLoader,
+                        element: <BookDatabaseComponent />
+                    }
                     
                 ]
             }

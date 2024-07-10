@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import SearchBooksComponent from "./SearchBooksComponent";
 import { useLoaderData } from "react-router-dom";
 
-const BookListDatabaseComponent = () => {
+const BookListDatabaseComponent = ({currentUser}) => {
 
     const bookShelf = useLoaderData();
 
@@ -11,16 +10,20 @@ const BookListDatabaseComponent = () => {
     const bookList = bookShelf.books.map((book) => (
         <section key={book.id} className="content-grid">
             <p className="card">
-                {book.title}
+                <Link to={`/users/bookshelves/books/${book.id}`}>
+                    {book.title}
+                </Link>
+                
             </p>
         </section>
     ));
 
 
     return(
-        <div className="content-grid">
+        <section className="content-grid" key="book.id">
+            <h3>{`${currentUser.username}'s ${bookShelf.name} bookshelf`}</h3>
             {bookList}
-        </div>
+        </section>
     )
 }
 
