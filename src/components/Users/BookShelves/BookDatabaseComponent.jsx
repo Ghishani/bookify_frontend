@@ -1,16 +1,13 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-const BookDatabaseComponent = ({deleteBookFromBookShelf, currentBookShelf, markBookAsRead, currentUser, fetchUserBook, currentUserBook}) => {
+const BookDatabaseComponent = ({deleteBookFromBookShelf, currentBookShelf, markBookAsRead, currentUser, fetchUserBook, currentUserBook, setCurrentBook}) => {
     const navigate = useNavigate();
     const book = useLoaderData();
+    setCurrentBook(book);
     
-    console.log(currentUserBook);
+    console.log("currentuserbook"+currentUserBook);
 
-    
-    useEffect(() => {
-        fetchUserBook(currentUser.id, book.id)
-    }, []);
 
     const handleButtonClick = () => {
         deleteBookFromBookShelf(currentBookShelf.id, book.id);

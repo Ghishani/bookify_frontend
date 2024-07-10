@@ -23,6 +23,7 @@ const BookifyContainer = ()=> {
     const [currentUser, setCurrentUser] = useState ({});
     const [currentUserBook, setCurrentUserBook] = useState({});
     const [currentBookShelf, setCurrentBookShelf] = useState ({});
+    const [currentBook, setCurrentBook] = useState({});
     
     const fetchUsers = async () => {
 
@@ -121,6 +122,10 @@ const BookifyContainer = ()=> {
         fetchBooksFromBookShelf()
     }, []);
 
+    useEffect(() => {
+        fetchUserBook(currentUser.id, currentBook.id)
+    }, [currentBook, currentUser]);
+
     const router = createBrowserRouter(
         [
             {
@@ -187,7 +192,14 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/bookshelves/books/:id",
                         loader: bookLoader,
-                        element: <BookDatabaseComponent deleteBookFromBookShelf = {deleteBookFromBookShelf} currentBookShelf={currentBookShelf} markBookAsRead = {markBookAsRead} currentUser = {currentUser} fetchUserBook = {fetchUserBook} currentUserBook = {currentUserBook}/>
+                        element: <BookDatabaseComponent 
+                            deleteBookFromBookShelf = {deleteBookFromBookShelf} 
+                            currentBookShelf={currentBookShelf} 
+                            markBookAsRead = {markBookAsRead} 
+                            currentUser = {currentUser} 
+                            fetchUserBook = {fetchUserBook} 
+                            currentUserBook = {currentUserBook} 
+                            setCurrentBook={setCurrentBook}/>
                     }
                     
                 ]
