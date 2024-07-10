@@ -13,13 +13,12 @@ import FAQComponent from "./components/Homepage/Footer/FAQComponent";
 import BookShelvesComponent from "./components/Users/BookShelves/BookShelvesComponent";
 import SearchBooksComponent from "./components/Users/BookShelves/SearchBooksComponent";
 import AddBookComponent from "./components/Users/BookShelves/AddBookComponent";
-import BookDatabaseComponent from "./components/Users/BookShelves/BookDatabaseComponent";
+import BookListDatabaseComponent from "./components/Users/BookShelves/BookListDatabaseComponent";
 
 const BookifyContainer = ()=> {
 
     const [users, setUsers] = useState([]);
     const [books, setBooks] = useState ([]);
-    const [bookShelf, setBookShelf] = useState ([]);
 
     
     const fetchUsers = async () => {
@@ -95,8 +94,8 @@ const BookifyContainer = ()=> {
                 element: <HomePageComponent />,
                 children: [
                     {
-                        path: "/books",
-                        element: <BookOnlineComponent books={books} />,
+                        path: "/books-online",
+                        element: <BookOnlineComponent />,
 
                     },
                     {
@@ -149,7 +148,7 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/bookshelves/:id/books",
                         loader: bookShelfLoader,
-                        element: <BookDatabaseComponent  />
+                        element: <BookListDatabaseComponent  />
                     },
                     
                 ]
