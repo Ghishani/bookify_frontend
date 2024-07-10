@@ -21,6 +21,7 @@ const BookifyContainer = ()=> {
     const [users, setUsers] = useState([]);
     const [books, setBooks] = useState ([]);
     const [currentUser, setCurrentUser] = useState ({});
+    const [currentBookShelf, setCurrentBookShelf] = useState ({});
     
     const fetchUsers = async () => {
 
@@ -46,8 +47,16 @@ const BookifyContainer = ()=> {
         await fetch (`http://localhost:8080/users/${id}`, {
             method: "DELETE",
         } );
-
         setUsers(users.filter(user => user.id!== id));
+    }
+
+    const deleteBookFromBookShelf = async (bookShelfId, bookId) => {
+        // localhost:8080/bookshelves/1/books/2
+        await fetch (`http://localhost:8080/bookshelves/${bookShelfId}/books/${bookId}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+        } );
+        await fetchUsers();
     }
 
     const userLoader = ({params}) => {
@@ -98,7 +107,6 @@ const BookifyContainer = ()=> {
         fetchUsers()
         fetchBooksFromBookShelf()
     }, []);
-
 
     const router = createBrowserRouter(
         [
@@ -161,12 +169,12 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/bookshelves/:id/books",
                         loader: bookShelfLoader,
-                        element: <BookListDatabaseComponent  currentUser={currentUser}/>
+                        element: <BookListDatabaseComponent  currentUser={currentUser} setCurrentBookShelf={setCurrentBookShelf}/>
                     },
                     {
                         path: "/users/bookshelves/books/:id",
                         loader: bookLoader,
-                        element: <BookDatabaseComponent />
+                        element: <BookDatabaseComponent deleteBookFromBookShelf = {deleteBookFromBookShelf} currentBookShelf={currentBookShelf}/>
                     }
                     
                 ]

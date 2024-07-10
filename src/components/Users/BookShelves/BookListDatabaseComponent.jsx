@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 
-const BookListDatabaseComponent = ({currentUser}) => {
+const BookListDatabaseComponent = ({currentUser, setCurrentBookShelf}) => {
 
     const bookShelf = useLoaderData();
-
-    console.log("bookshelf:" , bookShelf);
+    setCurrentBookShelf(bookShelf);
 
     const bookList = bookShelf.books.map((book) => (
         <section key={book.id} className="content-grid">

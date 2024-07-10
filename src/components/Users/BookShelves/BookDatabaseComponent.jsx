@@ -1,8 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
-const BookDatabaseComponent = () => {
-
+const BookDatabaseComponent = ({deleteBookFromBookShelf, currentBookShelf}) => {
+    const navigate = useNavigate();
     const book = useLoaderData();
+    
+
+    const handleButtonClick = () => {
+        deleteBookFromBookShelf(currentBookShelf.id, book.id);
+        navigate(`/users/bookshelves/${currentBookShelf.id}/books`);
+    }
 
     return(
         <>
@@ -14,6 +20,7 @@ const BookDatabaseComponent = () => {
                 <p>Rating: {book.rating}</p>
                 <p>Genre: {book.genre}</p>
              </section>
+             <button onClick={handleButtonClick} style={{backgroundColor: "red"}}> Delete book from bookshelf</button>
         </>
     );
 

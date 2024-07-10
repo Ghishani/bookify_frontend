@@ -28,7 +28,7 @@ const BookShelvesComponent = ({deleteUser, setCurrentUser}) => {
         <section className="content-grid" key="user.id">
             <h3>{`${user.username}'s bookshelves`}</h3>
             {bookShelfList}
-            <button onClick= {handleButtonClick}>Delete User</button>
+            <button onClick= {handleButtonClick} style={{backgroundColor: "red"}}>Delete User</button>
         </section>
 
     );
