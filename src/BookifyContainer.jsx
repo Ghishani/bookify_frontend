@@ -21,6 +21,7 @@ const BookifyContainer = ()=> {
     const [users, setUsers] = useState([]);
     const [books, setBooks] = useState ([]);
     const [currentUser, setCurrentUser] = useState ({});
+    const [currentUserBook, setCurrentUserBook] = useState({});
     const [currentBookShelf, setCurrentBookShelf] = useState ({});
     
     const fetchUsers = async () => {
@@ -84,7 +85,19 @@ const BookifyContainer = ()=> {
         return bookToView;
     }
 
+    const fetchUserBook= async (userId, bookId) => {
+        const userBookResponse = await fetch(`http://localhost:8080/users-books/${userId}/${bookId}`);
+        const userBookData = await userBookResponse.json();
+        setCurrentUserBook(userBookData);
+    } 
 
+    const markBookAsRead = async () => {
+        await fetch (`http://localhost:8080/users-books/${currentUserBook.id}?readingStatus=READ`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+        } );
+        await fetchUsers();
+    }
 
     const fetchBooksFromBookShelf = async (id) => {
         const response = await fetch(`http://localhost:8080/bookshelves/${id}`);
@@ -174,7 +187,7 @@ const BookifyContainer = ()=> {
                     {
                         path: "/users/bookshelves/books/:id",
                         loader: bookLoader,
-                        element: <BookDatabaseComponent deleteBookFromBookShelf = {deleteBookFromBookShelf} currentBookShelf={currentBookShelf}/>
+                        element: <BookDatabaseComponent deleteBookFromBookShelf = {deleteBookFromBookShelf} currentBookShelf={currentBookShelf} markBookAsRead = {markBookAsRead} currentUser = {currentUser} fetchUserBook = {fetchUserBook} currentUserBook = {currentUserBook}/>
                     }
                     
                 ]
