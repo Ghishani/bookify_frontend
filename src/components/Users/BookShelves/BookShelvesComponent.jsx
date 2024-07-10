@@ -1,12 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+
 import { Link } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
-
-const BookShelvesComponent = () => {
-    
+const BookShelvesComponent = ({deleteUser}) => {
+    const navigate = useNavigate();
     const user = useLoaderData();
-
-    console.log("user : " , user); 
+  
+    const handleButtonClick = () => {
+          deleteUser(user.id);
+          navigate("/users");
+      }
 
     const bookShelfList = user.bookshelves.map((bookShelf)=>{
         return(
@@ -21,9 +24,12 @@ const BookShelvesComponent = () => {
     });
 
     return(
-        <div className="content-grid">
+        <section className="content-grid" key="user.id">
+            <h3>{`${user.username}'s bookshelves`}</h3>
             {bookShelfList}
-        </div>
+            <button onClick= {handleButtonClick}>Delete User</button>
+        </section>
+
     );
 
 }
