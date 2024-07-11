@@ -1,8 +1,12 @@
 const BookOnlineComponent = ({booksOnline}) => {
 
-console.log("books online: " + booksOnline);
+    if (!booksOnline || !booksOnline.items) {
+        return <p>Loading ... </p>;
+    }
 
-    const bookList = booksOnline["items"].map((book) => (
+    console.log("books online: " + booksOnline);
+
+    const bookList = booksOnline.items.map((book) => (
         <section key={book.id} className="content-grid">
             <p className="card">
                 {book.volumeInfo.title}

@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import BookOnlineComponent from "../BookOnlineComponent";
 
-const ContentComponent = () => {
+const ContentComponent = ({booksOnline}) => {
 
     return(
         <section className="content">
             <hr />
             <Outlet />
             <hr />
-            <BookOnlineComponent/>
+            {booksOnline ? <BookOnlineComponent booksOnline = {booksOnline} /> : <p>Fetching online books ...</p>}
         </section>
     )
 }

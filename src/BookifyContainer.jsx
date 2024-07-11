@@ -26,7 +26,7 @@ const BookifyContainer = ()=> {
     const [currentBookShelf, setCurrentBookShelf] = useState ({});
     const [currentBook, setCurrentBook] = useState({});
     const [quote, setQuote] = useState([]);
-    const [booksOnline, setBooksOnline] = useState({});
+    const [booksOnline, setBooksOnline] = useState(null);
     
     const fetchUsers = async () => {
 
@@ -148,16 +148,11 @@ const BookifyContainer = ()=> {
         [
             {
                 path: "/",
-                element: <HomePageComponent />,
+                element: <HomePageComponent booksOnline={booksOnline}/>,
                 children: [
                     {
                         path: "/",
                         element: quote.length > 0 ? <QuoteComponent quote={quote} /> : <p>Fetching a quote ...</p>,
-                    },
-                    {
-                        path: "/books-online",
-                        element: booksOnline.length > 0 ? <BookOnlineComponent booksOnline = {booksOnline} /> : <p>Fetching online books ...</p>
-
                     },
                     {
                         path: "/users",
