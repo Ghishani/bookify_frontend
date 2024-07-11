@@ -1,3 +1,19 @@
+.logo-and-title {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.book-logo {
+  height: 100px;
+  width: 100px;
+  margin-top: 2em;
+}
+
+.title-bookify {
+  text-align: left;
+  font-family: cursive;
+  font-size: 500%;
+}
 
 .navigation-bar {
   list-style-type: none;
@@ -127,8 +143,3 @@ footer{
   color: #888;
 }
 
-.title-bookify {
-  text-align: left;
-  font-family: cursive;
-  font-size: 500%;
-}
