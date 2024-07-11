@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import BookOnlineComponent from "../BookOnlineComponent";
 
 const ContentComponent = () => {
 
@@ -7,6 +8,7 @@ const ContentComponent = () => {
             <hr />
             <Outlet />
             <hr />
+            <BookOnlineComponent/>
         </section>
     )
 }
