@@ -6,8 +6,11 @@ import ContentComponent from "./ContentComponent";
 const HomePageComponent = () => {
 
     return(
-        <>
-        <h1>Bookify</h1>
+        <> 
+       <div className="logo-and-title">
+            <img src="./assets/booklogo.png" alt="book logo" className="book-logo" />
+            <h1 className='title-bookify'>Bookify</h1>
+        </div> 
             <section>
                 <NavigationBar />
                 <ContentComponent />
