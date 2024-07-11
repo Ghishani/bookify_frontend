@@ -88,12 +88,28 @@
   height: 100px;
   width: 45px;
   flex-direction: column;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+}
+
+.thefront{
+  background-color: blue;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  
+}
+
+.theback{
+  background-color: blue;
+  backface-visibility: hidden;
+  transform: rotateY(180deg)
 }
 
 .card:hover {
   transform: scale(1.1);
   background-color: #459b53a9;
   color: white; 
+  transform: rotateY(180deg)
 }
 
 footer{
