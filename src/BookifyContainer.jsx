@@ -15,6 +15,7 @@ import SearchBooksComponent from "./components/Users/BookShelves/SearchBooksComp
 import AddBookComponent from "./components/Users/BookShelves/AddBookComponent";
 import BookListDatabaseComponent from "./components/Users/BookShelves/BookListDatabaseComponent";
 import BookDatabaseComponent from "./components/Users/BookShelves/BookDatabaseComponent";
+import QuoteComponent from "./components/QuoteComponent";
 
 const BookifyContainer = ()=> {
 
@@ -24,6 +25,7 @@ const BookifyContainer = ()=> {
     const [currentUserBook, setCurrentUserBook] = useState({});
     const [currentBookShelf, setCurrentBookShelf] = useState ({});
     const [currentBook, setCurrentBook] = useState({});
+    const [quote, setQuote] = useState([]);
     
     const fetchUsers = async () => {
 
@@ -116,8 +118,15 @@ const BookifyContainer = ()=> {
         setBooks([...books, savedBook]);
     };
 
+    const fetchQuote = async () => {
+        const response = await fetch("https://api.quotable.io/quotes/random");
+        const data = await response.json();
+        setQuote(data);
+    }
+
 
     useEffect(() => {
+        fetchQuote()
         fetchUsers()
         fetchBooksFromBookShelf()
     }, []);
@@ -125,6 +134,7 @@ const BookifyContainer = ()=> {
     useEffect(() => {
         fetchUserBook(currentUser.id, currentBook.id)
     }, [currentBook, currentUser]);
+    
 
     const router = createBrowserRouter(
         [
@@ -132,6 +142,10 @@ const BookifyContainer = ()=> {
                 path: "/",
                 element: <HomePageComponent />,
                 children: [
+                    {
+                        path: "/",
+                        element: quote.length > 0 ? <QuoteComponent quote={quote} /> : <p>Fetching a quote ...</p>,
+                    },
                     {
                         path: "/books-online",
                         element: <BookOnlineComponent />,
