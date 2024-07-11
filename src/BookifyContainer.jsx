@@ -134,6 +134,7 @@ const BookifyContainer = ()=> {
     useEffect(() => {
         fetchUserBook(currentUser.id, currentBook.id)
     }, [currentBook, currentUser]);
+    
 
     const router = createBrowserRouter(
         [
@@ -143,7 +144,7 @@ const BookifyContainer = ()=> {
                 children: [
                     {
                         path: "/",
-                        element: <QuoteComponent quote={quote} />,
+                        element: quote.length > 0 ? <QuoteComponent quote={quote} /> : <p>Fetching a quote ...</p>,
                     },
                     {
                         path: "/books-online",
