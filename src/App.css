@@ -1,3 +1,20 @@
+.logo-and-title {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.book-logo {
+  height: 100px;
+  width: 100px;
+  margin-top: 2em;
+}
+
+.title-bookify {
+  text-align: left;
+  font-family: cursive;
+  font-size: 500%;
+}
+
 .navigation-bar {
   list-style-type: none;
   padding: 0;
@@ -5,7 +22,7 @@
   display: flex;
   justify-content: space-around;
   background-color: white;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
   width: 100%;
   position: sticky;
   top: 0;
@@ -66,7 +83,7 @@ footer{
   display: flex;
   justify-content: space-evenly;
   background-color: white;
-  border-top: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
   padding: 10px 0;
 }
 
@@ -125,3 +142,4 @@ footer{
 .read-the-docs {
   color: #888;
 }
+
