@@ -4,7 +4,7 @@ import ContentComponent from "./ContentComponent";
 import bookLogo from "/src/assets/booklogo.png"
 
 
-const HomePageComponent = ({booksOnline}) => {
+const HomePageComponent = () => {
 
     return(
         <> 
@@ -14,7 +14,7 @@ const HomePageComponent = ({booksOnline}) => {
         </div> 
             <section>
                 <NavigationBar />
-                <ContentComponent booksOnline={booksOnline}/>
+                <ContentComponent />
                 <FooterComponent />
             </section>
         </>

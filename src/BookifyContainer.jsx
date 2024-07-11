@@ -103,12 +103,6 @@ const BookifyContainer = ()=> {
         await fetchUsers();
     }
 
-    const fetchBooksFromBookShelf = async (id) => {
-        const response = await fetch(`http://localhost:8080/bookshelves/${id}`);
-        const data = await response.json();
-        setBooks(data);
-    }
-
     const postBook = async (bookShelf, newBook) => {
         const response = await fetch(`http://localhost:8080/bookshelves/${bookShelf.id}`, {
             method: "POST",
@@ -126,9 +120,15 @@ const BookifyContainer = ()=> {
     }
 
     const fetchBooksOnline = async () => {
-        const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=penguin+inpublisher&orderBy=newest&limit?=20");
+        const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=javascript+subject&limit?=10");
         const data = await response.json();
         setBooksOnline(data);
+    }
+
+    const fetchAllBooksDatabase = async () => {
+        const response = await fetch("http://localhost:8080/books");
+        const data = await response.json();
+        setBooks(data);
     }
 
 
@@ -136,12 +136,13 @@ const BookifyContainer = ()=> {
         fetchQuote()
         fetchBooksOnline()
         fetchUsers()
-        fetchBooksFromBookShelf()
+        fetchAllBooksDatabase()
     }, []);
 
     useEffect(() => {
         fetchUserBook(currentUser.id, currentBook.id)
     }, [currentBook, currentUser]);
+    
     
 
     const router = createBrowserRouter(
@@ -155,6 +156,10 @@ const BookifyContainer = ()=> {
                         element: quote.length > 0 ? <QuoteComponent quote={quote} /> : <p>Fetching a quote ...</p>,
                     },
                     {
+                        path: "/books-online",
+                        element: booksOnline ? <BookOnlineComponent booksOnline = {booksOnline} /> : <p>Fetching online books ...</p>
+                    },
+                    {
                         path: "/users",
                         element: <UsersComponent users= {users} setUsers = {setUsers} 
                                 originalUserList={fetchUsers}
@@ -166,7 +171,7 @@ const BookifyContainer = ()=> {
                     },
                     {
                         path: "/recommendations",
-                        element: <RecommendationsComponent />,
+                        element: <RecommendationsComponent books={books}/>,
                     },
                     {
                         path: "/users/:id/bookshelves",
