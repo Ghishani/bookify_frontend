@@ -26,6 +26,7 @@ const BookifyContainer = ()=> {
     const [currentBookShelf, setCurrentBookShelf] = useState ({});
     const [currentBook, setCurrentBook] = useState({});
     const [quote, setQuote] = useState([]);
+    const [booksOnline, setBooksOnline] = useState(null);
     
     const fetchUsers = async () => {
 
@@ -124,9 +125,16 @@ const BookifyContainer = ()=> {
         setQuote(data);
     }
 
+    const fetchBooksOnline = async () => {
+        const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=penguin+inpublisher&orderBy=newest&limit?=20");
+        const data = await response.json();
+        setBooksOnline(data);
+    }
+
 
     useEffect(() => {
         fetchQuote()
+        fetchBooksOnline()
         fetchUsers()
         fetchBooksFromBookShelf()
     }, []);
@@ -140,16 +148,11 @@ const BookifyContainer = ()=> {
         [
             {
                 path: "/",
-                element: <HomePageComponent />,
+                element: <HomePageComponent booksOnline={booksOnline}/>,
                 children: [
                     {
                         path: "/",
                         element: quote.length > 0 ? <QuoteComponent quote={quote} /> : <p>Fetching a quote ...</p>,
-                    },
-                    {
-                        path: "/books-online",
-                        element: <BookOnlineComponent />,
-
                     },
                     {
                         path: "/users",
